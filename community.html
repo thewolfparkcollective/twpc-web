@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community | The Wolfpark Collective</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons for minimalist icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        /* Reusing the same styles from other pages for consistency */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0a192f; /* Navy Blue Background */
+            color: #e5e7eb; 
+        }
+
+        .bg-navy { background-color: #0a192f; }
+        .bg-lavender { background-color: #a78bfa; }
+        .hover\:bg-lavender-dark:hover { background-color: #8b5cf6; }
+        .text-lavender { color: #a78bfa; }
+        .border-lavender { border-color: #a78bfa; }
+        
+        .nav-link {
+            position: relative;
+            padding-bottom: 8px;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #a78bfa;
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        .nav-link:hover, .nav-link.active {
+             color: #ffffff;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header id="header" class="sticky top-0 left-0 right-0 z-50 bg-navy/90 backdrop-blur-sm shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <nav class="flex items-center justify-between">
+                <!-- LOGO -->
+                <a href="index.html" class="flex items-center space-x-3 z-10">
+                    <img src="https://i.imgur.com/u1MLUaK.png" alt="Wolfpark Wave Logo" class="h-8 w-auto">
+                    <span class="text-xl font-bold tracking-wider text-white hidden sm:block">The Wolfpark Collective</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link text-gray-300 font-medium">Home</a>
+                    <a href="about.html" class="nav-link text-gray-300 font-medium">About</a>
+                    <a href="departments.html" class="nav-link text-gray-300 font-medium">Departments</a>
+                    <a href="projects.html" class="nav-link text-gray-300 font-medium">Projects</a>
+                    <a href="community.html" class="nav-link text-gray-300 font-medium active">Community</a>
+                    <a href="contact.html" class="nav-link text-gray-300 font-medium">Contact</a>
+                </div>
+
+                 <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-300 hover:text-white focus:outline-none z-10">
+                    <span class="sr-only">Open main menu</span>
+                    <i data-feather="menu" class="w-6 h-6"></i>
+                </button>
+            </nav>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-navy/95 backdrop-blur-sm">
+            <div class="flex flex-col items-center justify-center py-8 space-y-6">
+                <a href="index.html" class="text-xl font-medium text-gray-200 hover:text-lavender">Home</a>
+                <a href="about.html" class="text-xl font-medium text-gray-200 hover:text-lavender">About</a>
+                <a href="departments.html" class="text-xl font-medium text-gray-200 hover:text-lavender">Departments</a>
+                <a href="projects.html" class="text-xl font-medium text-gray-200 hover:text-lavender">Projects</a>
+                <a href="community.html" class="text-xl font-medium text-lavender">Community</a>
+                <a href="contact.html" class="text-xl font-medium text-gray-200 hover:text-lavender">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Header Section -->
+        <section class="bg-navy pt-24 pb-16 md:pt-32 md:pb-24 text-center">
+            <div class="container mx-auto px-6">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-white">Join the Pack</h1>
+                <p class="text-lg md:text-xl text-lavender mt-4">More than a collective, we're a family.</p>
+            </div>
+        </section>
+        
+        <!-- Upcoming Events Section -->
+        <section class="py-20 md:py-28 px-6">
+            <div class="container mx-auto max-w-5xl">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">Upcoming Events</h2>
+                    <p class="text-gray-400 mt-4">Connect, create, and celebrate with us.</p>
+                </div>
+                <div id="events-list" class="space-y-8">
+                    <!-- Events will be dynamically inserted here -->
+                     <p id="loading-message" class="text-center text-gray-400">Loading events...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Get Involved Section -->
+        <section class="py-20 md:py-28 bg-navy px-6">
+            <div class="container mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-white">How to Get Involved</h2>
+                <div class="mt-12 grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+                    <!-- Step 1 -->
+                    <div class="text-center">
+                        <div class="flex items-center justify-center h-16 w-16 mx-auto rounded-full bg-lavender/10 border-2 border-lavender mb-4">
+                           <span class="text-2xl font-bold text-lavender">1</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white mb-2">Attend an Event</h3>
+                        <p class="text-gray-400">Our events are open to everyone. It's the perfect way to meet the pack and see what we're about.</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="text-center">
+                         <div class="flex items-center justify-center h-16 w-16 mx-auto rounded-full bg-lavender/10 border-2 border-lavender mb-4">
+                           <span class="text-2xl font-bold text-lavender">2</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white mb-2">Share Your Work</h3>
+                        <p class="text-gray-400">Connect with us online or at an open mic night. We're always excited to see new art.</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="text-center">
+                         <div class="flex items-center justify-center h-16 w-16 mx-auto rounded-full bg-lavender/10 border-2 border-lavender mb-4">
+                           <span class="text-2xl font-bold text-lavender">3</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white mb-2">Become a Member</h3>
+                        <p class="text-gray-400">Ready to join? Reach out to us to learn more about membership benefits and how to apply.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Call to Action -->
+        <section class="py-20 md:py-20 text-center px-6">
+             <div class="container mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">We can't wait to meet you.</h2>
+                <a href="contact.html" class="bg-lavender hover:bg-lavender-dark text-white font-bold py-3 px-8 rounded-lg text-lg transition-all transform hover:scale-105">Contact Us Today</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-navy border-t border-gray-800">
+        <div class="container mx-auto px-6 py-8">
+            <div class="text-center mb-6"><a href="index.html" class="px-3 text-gray-400 hover:text-white">Home</a><a href="about.html" class="px-3 text-gray-400 hover:text-white">About</a><a href="departments.html" class="px-3 text-gray-400 hover:text-white">Departments</a><a href="projects.html" class="px-3 text-gray-400 hover:text-white">Projects</a><a href="community.html" class="px-3 text-gray-400 hover:text-white">Community</a><a href="contact.html" class="px-3 text-gray-400 hover:text-white">Contact</a></div>
+            <div class="flex justify-center space-x-6 mb-6"><a href="#" class="text-gray-400 hover:text-lavender"><i data-feather="twitter"></i></a><a href="#" class="text-gray-400 hover:text-lavender"><i data-feather="instagram"></i></a><a href="#" class="text-gray-400 hover:text-lavender"><i data-feather="linkedin"></i></a></div>
+            <p class="text-center text-gray-500">&copy; 2025 The Wolfpark Collective. All rights reserved.</p>
+        </div>
+    </footer>
+
+     <!-- Firebase Libraries -->
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, onSnapshot, doc, setDoc, Timestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // --- Firebase Configuration ---
+        const firebaseConfig = JSON.parse(__firebase_config);
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'wolfpark-collective';
+
+        // --- Firebase Initialization ---
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // --- Authentication ---
+        try {
+            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                await signInWithCustomToken(auth, __initial_auth_token);
+            } else {
+                await signInAnonymously(auth);
+            }
+            console.log("Firebase authentication successful.");
+            listenForEvents(); // Start listening for events after successful auth
+        } catch(error) {
+            console.error("Firebase authentication failed:", error);
+            document.getElementById('loading-message').textContent = 'Could not connect to the database.';
+        }
+        
+        // --- UI Logic ---
+        feather.replace();
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // --- Firestore Logic ---
+        const eventsList = document.getElementById('events-list');
+
+        /**
+         * Creates the HTML for a single event card.
+         * @param {object} eventData - The data for a single event.
+         * @returns {string} The HTML string for the event card.
+         */
+        function createEventCard(eventData) {
+            const { title, description, location, time, date } = eventData;
+            
+            // Convert Firestore Timestamp to a JavaScript Date object
+            const jsDate = date.toDate();
+            const day = jsDate.getDate();
+            const month = jsDate.toLocaleString('default', { month: 'short' }).toUpperCase();
+
+            return `
+                <div class="md:flex items-center bg-navy rounded-xl shadow-lg overflow-hidden border border-gray-800">
+                    <div class="md:w-1/4 bg-lavender/10 text-center p-6">
+                        <p class="text-5xl font-bold text-white">${day}</p>
+                        <p class="text-xl font-semibold text-lavender">${month}</p>
+                    </div>
+                    <div class="p-6 md:w-3/4">
+                        <h3 class="text-2xl font-bold text-white mb-2">${title}</h3>
+                        <p class="text-gray-400 mb-4">${description}</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                           <i data-feather="map-pin" class="w-4 h-4 mr-2"></i> ${location} &nbsp;&nbsp;
+                           <i data-feather="clock" class="w-4 h-4 mr-2"></i> ${time}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        /**
+         * Listens for real-time updates to the events collection.
+         */
+        function listenForEvents() {
+            const eventsCollection = collection(db, `/artifacts/${appId}/public/data/events`);
+            
+            onSnapshot(eventsCollection, (snapshot) => {
+                eventsList.innerHTML = ''; // Clear the list
+                
+                if (snapshot.empty) {
+                    eventsList.innerHTML = '<p class="text-center text-gray-400">No upcoming events. Check back soon!</p>';
+                } else {
+                    snapshot.forEach((doc) => {
+                        const eventData = doc.data();
+                        const cardHTML = createEventCard(eventData);
+                        eventsList.insertAdjacentHTML('beforeend', cardHTML);
+                    });
+                     feather.replace(); // Re-render icons after adding new HTML
+                }
+            }, (error) => {
+                console.error("Error fetching events: ", error);
+                eventsList.innerHTML = '<p class="text-center text-red-500">Error loading events. Please check the console.</p>';
+            });
+        }
+        
+        /**
+         * Adds some initial sample data to Firestore for events.
+         * This is for demonstration purposes.
+         */
+        async function addSampleData() {
+            const sampleEvents = [
+                { id: 'event1', title: 'Open Mic Night', description: 'Share your latest poem, song, or story in a supportive and welcoming space. Sign-ups start at 7:00 PM.', location: 'The Wolfpark Den', time: '7:30 PM', date: Timestamp.fromDate(new Date('2025-07-15')) },
+                { id: 'event2', title: 'Collaborative Art Workshop', description: 'Join artists from different departments to create a large-scale collaborative piece. All materials provided.', location: 'Studio B', time: '1:00 PM - 4:00 PM', date: Timestamp.fromDate(new Date('2025-07-28')) },
+            ];
+
+            for (const event of sampleEvents) {
+                 const docRef = doc(db, `/artifacts/${appId}/public/data/events`, event.id);
+                 await setDoc(docRef, event);
+            }
+            console.log('Sample event data added.');
+        }
+
+        // Uncomment the line below once to add sample data to your database.
+        // addSampleData();
+
+    </script>
+</body>
+</html>
