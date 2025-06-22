@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | The Wolfpark Collective</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons for minimalist icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        /* Reusing the same styles from other pages for consistency */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0a192f; /* Navy Blue Background */
+            color: #e5e7eb; 
+        }
+
+        .bg-navy { background-color: #0a192f; }
+        .bg-lavender { background-color: #a78bfa; }
+        .hover\:bg-lavender-dark:hover { background-color: #8b5cf6; }
+        .text-lavender { color: #a78bfa; }
+        .border-lavender { border-color: #a78bfa; }
+        
+        .nav-link {
+            position: relative;
+            padding-bottom: 8px;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #a78bfa;
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        .nav-link:hover, .nav-link.active {
+             color: #ffffff;
+        }
+        
+        .form-input {
+            background-color: #1e293b;
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #a78bfa;
+        }
+
+        /* Spinner for submit button */
+        .loader {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #a78bfa;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header id="header" class="sticky top-0 left-0 right-0 z-50 bg-navy/90 backdrop-blur-sm shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <nav class="flex items-center justify-between">
+                <!-- LOGO -->
+                <a href="index.html" class="flex items-center space-x-3 z-10">
+                    <img src="https://i.imgur.com/u1MLUaK.png" alt="Wolfpark Wave Logo" class="h-8 w-auto">
+                    <span class="text-xl font-bold tracking-wider text-white hidden sm:block">The Wolfpark Collective</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link text-gray-300 font-medium">Home</a>
+                    <a href="about.html" class="nav-link text-gray-300 font-medium">About</a>
+                    <a href="departments.html" class="nav-link text-gray-300 font-medium">Departments</a>
+                    <a href="projects.html" class="nav-link text-gray-300 font-medium">Projects</a>
+                    <a href="community.html" class="nav-link text-gray-300 font-medium">Community</a>
+                    <a href="contact.html" class="nav-link text-gray-300 font-medium active">Contact</a>
+                </div>
+
+                 <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-300 hover:text-white focus:outline-none z-10">
+                    <span class="sr-only">Open main menu</span>
+                    <i data-feather="menu" class="w-6 h-6"></i>
+                </button>
+            </nav>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-navy/95 backdrop-blur-sm">
+            <div class="flex flex-col items-center justify-center py-8 space-y-6">
+                <a href="index.html" class="text-xl font-medium text-gray-200 hover:text-lavender">Home</a>
+                <a href="about.html" class="text-xl font-medium text-gray-200 hover:text-lavender">About</a>
+                <a href="departments.html" class="text-xl font-medium text-gray-200 hover:text-lavender">Departments</a>
+                <a href="projects.html" class="text-xl font-medium text-gray-200 hover:text-lavender">Projects</a>
+                <a href="community.html" class="text-xl font-medium text-gray-200 hover:text-lavender">Community</a>
+                <a href="contact.html" class="text-xl font-medium text-lavender">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Header Section -->
+        <section class="bg-navy pt-24 pb-16 md:pt-32 md:pb-24 text-center">
+            <div class="container mx-auto px-6">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-white">Get in Touch</h1>
+                <p class="text-lg md:text-xl text-lavender mt-4">We'd love to hear from you. Let's talk.</p>
+            </div>
+        </section>
+        
+        <!-- Contact Form and Info Section -->
+        <section class="py-20 md:py-28 px-6">
+            <div class="container mx-auto max-w-6xl grid md:grid-cols-2 gap-16">
+                
+                <!-- Contact Form -->
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-6">Send Us a Message</h2>
+                    <form action="#" method="POST" id="contact-form">
+                        <div class="mb-5">
+                            <label for="name" class="block mb-2 text-sm font-medium text-gray-300">Full Name</label>
+                            <input type="text" name="name" id="name" class="w-full p-3 rounded-lg form-input" required>
+                        </div>
+                        <div class="mb-5">
+                            <label for="email" class="block mb-2 text-sm font-medium text-gray-300">Email Address</label>
+                            <input type="email" name="email" id="email" class="w-full p-3 rounded-lg form-input" required>
+                        </div>
+                         <div class="mb-5">
+                            <label for="subject" class="block mb-2 text-sm font-medium text-gray-300">Subject</label>
+                            <input type="text" name="subject" id="subject" class="w-full p-3 rounded-lg form-input" required>
+                        </div>
+                        <div class="mb-5">
+                            <label for="message" class="block mb-2 text-sm font-medium text-gray-300">Message</label>
+                            <textarea name="message" id="message" rows="6" class="w-full p-3 rounded-lg form-input" required></textarea>
+                        </div>
+                        <button type="submit" id="submit-button" class="w-full bg-lavender hover:bg-lavender-dark text-white font-bold py-3 px-6 rounded-lg text-lg transition-all flex items-center justify-center">
+                            <span id="button-text">Submit</span>
+                            <div id="button-spinner" class="loader hidden ml-3"></div>
+                        </button>
+                         <p id="form-status" class="mt-4 text-center"></p>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="md:pl-10">
+                    <h2 class="text-3xl font-bold text-white mb-6">Other Ways to Connect</h2>
+                    <p class="text-gray-300 mb-8">You can also reach out to us directly through email or find us on social media. We're always happy to connect with fellow creators.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center">
+                            <i data-feather="mail" class="w-6 h-6 text-lavender mr-4"></i>
+                            <a href="mailto:hello@wolfparkcollective.com" class="text-lg text-gray-300 hover:text-white">hello@wolfparkcollective.com</a>
+                        </div>
+                         <div class="flex items-center">
+                            <i data-feather="map-pin" class="w-6 h-6 text-lavender mr-4"></i>
+                            <span class="text-lg text-gray-300">Gainesville, FL (By Appointment)</span>
+                        </div>
+                    </div>
+
+                    <h3 class="text-2xl font-bold text-white mt-12 mb-4">Follow Us</h3>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-lavender"><i data-feather="twitter" class="w-7 h-7"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-lavender"><i data-feather="instagram" class="w-7 h-7"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-lavender"><i data-feather="linkedin" class="w-7 h-7"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-navy border-t border-gray-800">
+        <div class="container mx-auto px-6 py-8">
+            <div class="text-center mb-6"><a href="index.html" class="px-3 text-gray-400 hover:text-white">Home</a><a href="about.html" class="px-3 text-gray-400 hover:text-white">About</a><a href="departments.html" class="px-3 text-gray-400 hover:text-white">Departments</a><a href="projects.html" class="px-3 text-gray-400 hover:text-white">Projects</a><a href="community.html" class="px-3 text-gray-400 hover:text-white">Community</a><a href="contact.html" class="px-3 text-gray-400 hover:text-white">Contact</a></div>
+            <div class="flex justify-center space-x-6 mb-6"><a href="#" class="text-gray-400 hover:text-lavender"><i data-feather="twitter"></i></a><a href="#" class="text-gray-400 hover:text-lavender"><i data-feather="instagram"></i></a><a href="#" class="text-gray-400 hover:text-lavender"><i data-feather="linkedin"></i></a></div>
+            <p class="text-center text-gray-500">&copy; 2025 The Wolfpark Collective. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Firebase Libraries -->
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // --- Firebase Configuration and Initialization ---
+        
+        // These variables are placeholders that will be replaced by the environment.
+        const firebaseConfig = JSON.parse(__firebase_config);
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'wolfpark-collective';
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // --- Authentication ---
+        
+        // Sign in the user. If an auth token is provided, use it. Otherwise, sign in anonymously.
+        try {
+            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                await signInWithCustomToken(auth, __initial_auth_token);
+            } else {
+                await signInAnonymously(auth);
+            }
+            console.log("Firebase authentication successful.");
+        } catch(error) {
+            console.error("Firebase authentication failed:", error);
+        }
+
+        // --- UI and Form Logic ---
+        
+        // Feather Icons Initialization
+        feather.replace();
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Contact Form Submission Logic
+        const contactForm = document.getElementById('contact-form');
+        const formStatus = document.getElementById('form-status');
+        const submitButton = document.getElementById('submit-button');
+        const buttonText = document.getElementById('button-text');
+        const buttonSpinner = document.getElementById('button-spinner');
+
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault(); // Prevent default form submission
+
+            // Show loading state
+            buttonText.textContent = 'Submitting...';
+            buttonSpinner.classList.remove('hidden');
+            submitButton.disabled = true;
+
+            try {
+                // Get form values
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+
+                // Create a reference to the 'contact_messages' collection
+                const messagesCollection = collection(db, `/artifacts/${appId}/public/data/contact_messages`);
+                
+                // Add a new document with a generated ID
+                await addDoc(messagesCollection, {
+                    name: name,
+                    email: email,
+                    subject: subject,
+                    message: message,
+                    submittedAt: serverTimestamp() // Add a server-side timestamp
+                });
+
+                // Provide success feedback
+                formStatus.textContent = 'Thank you! Your message has been sent.';
+                formStatus.style.color = '#a78bfa'; // Lavender
+                contactForm.reset();
+
+            } catch (error) {
+                // Provide error feedback
+                console.error("Error adding document: ", error);
+                formStatus.textContent = 'An error occurred. Please try again later.';
+                formStatus.style.color = '#ef4444'; // Red
+            } finally {
+                // Reset button state
+                buttonText.textContent = 'Submit';
+                buttonSpinner.classList.add('hidden');
+                submitButton.disabled = false;
+                
+                // Clear status message after a few seconds
+                setTimeout(() => {
+                    formStatus.textContent = '';
+                }, 6000);
+            }
+        });
+
+    </script>
+</body>
+</html>
