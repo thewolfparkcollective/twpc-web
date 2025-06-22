@@ -17,57 +17,28 @@
     <script src="https://unpkg.com/feather-icons"></script>
 
     <style>
-        /* Reusing the same styles from other pages for consistency */
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #0a192f; /* Navy Blue Background */
-            color: #e5e7eb; 
-        }
-
+        body { font-family: 'Poppins', sans-serif; background-color: #0a192f; color: #e5e7eb; }
         .bg-navy { background-color: #0a192f; }
         .bg-lavender { background-color: #a78bfa; }
         .hover\:bg-lavender-dark:hover { background-color: #8b5cf6; }
         .text-lavender { color: #a78bfa; }
         .border-lavender { border-color: #a78bfa; }
-        
-        .nav-link {
-            position: relative;
-            padding-bottom: 8px;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            transform: scaleX(0);
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: #a78bfa;
-            transform-origin: bottom right;
-            transition: transform 0.3s ease-out;
-        }
-        .nav-link:hover::after, .nav-link.active::after {
-            transform: scaleX(1);
-            transform-origin: bottom left;
-        }
-        .nav-link:hover, .nav-link.active {
-             color: #ffffff;
-        }
+        .nav-link { position: relative; padding-bottom: 8px; }
+        .nav-link::after { content: ''; position: absolute; width: 100%; transform: scaleX(0); height: 2px; bottom: 0; left: 0; background-color: #a78bfa; transform-origin: bottom right; transition: transform 0.3s ease-out; }
+        .nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); transform-origin: bottom left; }
+        .nav-link:hover, .nav-link.active { color: #ffffff; }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- Header (Points to new pages now) -->
+    <!-- Header -->
     <header id="header" class="sticky top-0 left-0 right-0 z-50 bg-navy/90 backdrop-blur-sm shadow-lg">
         <div class="container mx-auto px-6 py-4">
             <nav class="flex items-center justify-between">
-                <!-- LOGO -->
                 <a href="index.html" class="flex items-center space-x-3 z-10">
                     <img src="https://i.imgur.com/u1MLUaK.png" alt="Wolfpark Wave Logo" class="h-8 w-auto">
                     <span class="text-xl font-bold tracking-wider text-white hidden sm:block">The Wolfpark Collective</span>
                 </a>
-
-                <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="index.html" class="nav-link text-gray-300 font-medium">Home</a>
                     <a href="about.html" class="nav-link text-gray-300 font-medium active">About</a>
@@ -76,15 +47,9 @@
                     <a href="community.html" class="nav-link text-gray-300 font-medium">Community</a>
                     <a href="contact.html" class="nav-link text-gray-300 font-medium">Contact</a>
                 </div>
-
-                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-300 hover:text-white focus:outline-none z-10">
-                    <span class="sr-only">Open main menu</span>
-                    <i data-feather="menu" class="w-6 h-6"></i>
-                </button>
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-300 hover:text-white focus:outline-none z-10"><span class="sr-only">Open main menu</span><i data-feather="menu" class="w-6 h-6"></i></button>
             </nav>
         </div>
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-navy/95 backdrop-blur-sm">
             <div class="flex flex-col items-center justify-center py-8 space-y-6">
                 <a href="index.html" class="text-xl font-medium text-gray-200 hover:text-lavender">Home</a>
@@ -98,120 +63,89 @@
     </header>
 
     <main>
-        <!-- Page Header Section -->
         <section class="bg-navy pt-24 pb-16 md:pt-32 md:pb-24 text-center">
-            <div class="container mx-auto px-6">
-                <h1 class="text-4xl md:text-6xl font-extrabold text-white">Who We Are</h1>
-                <p class="text-lg md:text-xl text-lavender mt-4">The story behind the pack.</p>
-            </div>
+            <div class="container mx-auto px-6"><h1 class="text-4xl md:text-6xl font-extrabold text-white">Who We Are</h1><p class="text-lg md:text-xl text-lavender mt-4">The story behind the pack.</p></div>
         </section>
-
-        <!-- Our Mission Section -->
         <section class="py-20 md:py-28 px-6">
             <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center">
                 <div>
                      <h2 class="text-3xl font-bold text-white mb-6">Our Mission</h2>
-                     <div class="text-lg text-gray-300 space-y-4">
-                        <p>The Wolfpark Collective was founded on a simple yet powerful idea: that creativity flourishes in a community built on support, collaboration, and mutual respect. We are a sanctuary for artists, creators, and innovators from all walks of life.</p>
-                        <p>Our mission is to provide the resources, network, and environment necessary for our members to push boundaries, realize their visions, and create impactful work. We believe that by working together, we can achieve more than we ever could alone.</p>
-                     </div>
+                     <div id="mission-content" class="text-lg text-gray-300 space-y-4"><p>Loading mission...</p></div>
                 </div>
-                 <div>
-                    <img src="https://placehold.co/600x400/0a192f/a78bfa?text=Community" alt="A community of creators" class="rounded-xl shadow-2xl w-full h-auto object-cover">
-                </div>
+                <div><img src="https://placehold.co/600x400/0a192f/a78bfa?text=Community" alt="A community of creators" class="rounded-xl shadow-2xl w-full h-auto object-cover"></div>
             </div>
         </section>
-        
-        <!-- Meet the Founders Section -->
         <section class="py-20 md:py-28 bg-navy px-6">
             <div class="container mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white">Meet the Founders</h2>
-                    <p class="text-gray-400 mt-4 max-w-2xl mx-auto">The driving force behind our pack.</p>
-                </div>
+                <div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold text-white">Meet the Founders</h2><p class="text-gray-400 mt-4 max-w-2xl mx-auto">The driving force behind our pack.</p></div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto items-start">
-                    <!-- Founder 1 -->
-                    <div class="text-center">
-                        <img src="https://placehold.co/300x300/1e293b/FFFFFF?text=R.D.W." alt="Roosevelt D. Wooden" class="w-48 h-48 rounded-full mx-auto mb-6 shadow-lg border-4 border-lavender/50">
-                        <h3 class="text-2xl font-bold text-white">Roosevelt D. Wooden</h3>
-                        <p class="text-lavender font-semibold mb-3">President</p>
-                        <p class="text-gray-400">A visionary leader with a passion for fostering creativity and collaboration, Roosevelt established the collective to build a supportive space for artists.</p>
-                    </div>
-                    <!-- Founder 2 -->
-                    <div class="text-center">
-                        <img src="https://placehold.co/300x300/1e293b/FFFFFF?text=J.F.J." alt="Jaison F. Joy" class="w-48 h-48 rounded-full mx-auto mb-6 shadow-lg border-4 border-lavender/50">
-                        <h3 class="text-2xl font-bold text-white">Jaison F. Joy</h3>
-                        <p class="text-lavender font-semibold mb-3">Senior Vice President</p>
-                        <p class="text-gray-400">Jaison is dedicated to the strategic growth of the collective, ensuring that our community has the resources and opportunities to flourish.</p>
-                    </div>
-                     <!-- Founder 3 -->
-                    <div class="text-center">
-                        <img src="https://placehold.co/300x300/1e293b/FFFFFF?text=E.S.B" alt="Ethan S. Burton" class="w-48 h-48 rounded-full mx-auto mb-6 shadow-lg border-4 border-lavender/50">
-                        <h3 class="text-2xl font-bold text-white">Ethan S. Burton</h3>
-                        <p class="text-lavender font-semibold mb-3">Vice President</p>
-                        <p class="text-gray-400">Ethan focuses on community outreach and member experience, ensuring Wolfpark remains a welcoming and inclusive environment for all creatives.</p>
-                    </div>
+                    <div class="text-center"><img src="https://placehold.co/300x300/1e293b/FFFFFF?text=R.D.W." alt="Roosevelt D. Wooden" class="w-48 h-48 rounded-full mx-auto mb-6 shadow-lg border-4 border-lavender/50"><h3 class="text-2xl font-bold text-white">Roosevelt D. Wooden</h3><p class="text-lavender font-semibold mb-3">President</p><p class="text-gray-400">A visionary leader with a passion for fostering creativity and collaboration, Roosevelt established the collective to build a supportive space for artists.</p></div>
+                    <div class="text-center"><img src="https://placehold.co/300x300/1e293b/FFFFFF?text=J.F.J." alt="Jaison F. Joy" class="w-48 h-48 rounded-full mx-auto mb-6 shadow-lg border-4 border-lavender/50"><h3 class="text-2xl font-bold text-white">Jaison F. Joy</h3><p class="text-lavender font-semibold mb-3">Senior Vice President</p><p class="text-gray-400">Jaison is dedicated to the strategic growth of the collective, ensuring that our community has the resources and opportunities to flourish.</p></div>
+                    <div class="text-center"><img src="https://placehold.co/300x300/1e293b/FFFFFF?text=E.S.B" alt="Ethan S. Burton" class="w-48 h-48 rounded-full mx-auto mb-6 shadow-lg border-4 border-lavender/50"><h3 class="text-2xl font-bold text-white">Ethan S. Burton</h3><p class="text-lavender font-semibold mb-3">Vice President</p><p class="text-gray-400">Ethan focuses on community outreach and member experience, ensuring Wolfpark remains a welcoming and inclusive environment for all creatives.</p></div>
                 </div>
             </div>
         </section>
-
-        <!-- Our Values Section -->
         <section class="py-20 md:py-28 px-6">
-            <div class="container mx-auto">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white">Our Core Values</h2>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    <!-- Value Card -->
-                    <div class="text-center p-6">
-                        <div class="flex justify-center mb-4"><i data-feather="users" class="w-12 h-12 text-lavender"></i></div>
-                        <h3 class="text-2xl font-semibold text-white mb-2">Collaboration</h3>
-                        <p class="text-gray-400">We champion the power of collective creation and shared success.</p>
-                    </div>
-                     <!-- Value Card -->
-                    <div class="text-center p-6">
-                        <div class="flex justify-center mb-4"><i data-feather="heart" class="w-12 h-12 text-lavender"></i></div>
-                        <h3 class="text-2xl font-semibold text-white mb-2">Support</h3>
-                        <p class="text-gray-400">We foster a nurturing environment where every member feels valued.</p>
-                    </div>
-                     <!-- Value Card -->
-                    <div class="text-center p-6">
-                        <div class="flex justify-center mb-4"><i data-feather="star" class="w-12 h-12 text-lavender"></i></div>
-                        <h3 class="text-2xl font-semibold text-white mb-2">Innovation</h3>
-                        <p class="text-gray-400">We encourage bold ideas and the courage to explore new frontiers.</p>
-                    </div>
-                </div>
-            </div>
+            <div class="container mx-auto"><div class="text-center mb-16"><h2 class="text-3xl md:text-4xl font-bold text-white">Our Core Values</h2></div><div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"><div class="text-center p-6"><div class="flex justify-center mb-4"><i data-feather="users" class="w-12 h-12 text-lavender"></i></div><h3 class="text-2xl font-semibold text-white mb-2">Collaboration</h3><p class="text-gray-400">We champion the power of collective creation and shared success.</p></div><div class="text-center p-6"><div class="flex justify-center mb-4"><i data-feather="heart" class="w-12 h-12 text-lavender"></i></div><h3 class="text-2xl font-semibold text-white mb-2">Support</h3><p class="text-gray-400">We foster a nurturing environment where every member feels valued.</p></div><div class="text-center p-6"><div class="flex justify-center mb-4"><i data-feather="star" class="w-12 h-12 text-lavender"></i></div><h3 class="text-2xl font-semibold text-white mb-2">Innovation</h3><p class="text-gray-400">We encourage bold ideas and the courage to explore new frontiers.</p></div></div></div>
         </section>
-        
-        <!-- Call to Action -->
         <section class="py-20 md:py-28 bg-navy text-center px-6">
-             <div class="container mx-auto">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Ready to find your pack?</h2>
-                <a href="contact.html" class="bg-lavender hover:bg-lavender-dark text-white font-bold py-3 px-8 rounded-lg text-lg transition-all transform hover:scale-105">Join The Collective</a>
-            </div>
+             <div class="container mx-auto"><h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Ready to find your pack?</h2><a href="contact.html" class="bg-lavender hover:bg-lavender-dark text-white font-bold py-3 px-8 rounded-lg text-lg transition-all transform hover:scale-105">Join The Collective</a></div>
         </section>
     </main>
-
-    <!-- Footer -->
     <footer class="bg-navy border-t border-gray-800">
-        <div class="container mx-auto px-6 py-8">
-            <div class="text-center mb-6"><a href="index.html" class="px-3 text-gray-400 hover:text-white">Home</a><a href="about.html" class="px-3 text-gray-400 hover:text-white">About</a><a href="departments.html" class="px-3 text-gray-400 hover:text-white">Departments</a><a href="projects.html" class="px-3 text-gray-400 hover:text-white">Projects</a><a href="community.html" class="px-3 text-gray-400 hover:text-white">Community</a><a href="contact.html" class="px-3 text-gray-400 hover:text-white">Contact</a></div>
-            <div class="flex justify-center space-x-6 mb-6"><a href="#" class="text-gray-400 hover:text-lavender"><i data-feather="twitter"></i></a><a href="#" class="text-gray-400 hover:text-lavender"><i data-feather="instagram"></i></a><a href="#" class="text-gray-400 hover:text-lavender"><i data-feather="linkedin"></i></a></div>
-            <p class="text-center text-gray-500">&copy; 2025 The Wolfpark Collective. All rights reserved.</p>
-        </div>
+        <div class="container mx-auto px-6 py-8"><div class="text-center mb-6"><a href="index.html" class="px-3 text-gray-400 hover:text-white">Home</a><a href="about.html" class="px-3 text-gray-400 hover:text-white">About</a><a href="departments.html" class="px-3 text-gray-400 hover:text-white">Departments</a><a href="projects.html" class="px-3 text-gray-400 hover:text-white">Projects</a><a href="community.html" class="px-3 text-gray-400 hover:text-white">Community</a><a href="contact.html" class="px-3 text-gray-400 hover:text-white">Contact</a></div><div class="flex justify-center space-x-6 mb-6"><a href="#" class="text-gray-400 hover:text-lavender"><i data-feather="twitter"></i></a><a href="#" class="text-gray-400 hover:text-lavender"><i data-feather="instagram"></i></a><a href="#" class="text-gray-400 hover:text-lavender"><i data-feather="linkedin"></i></a></div><p class="text-center text-gray-500">&copy; 2025 The Wolfpark Collective. All rights reserved.</p></div>
     </footer>
 
-    <script>
-        // Feather Icons Initialization
-        feather.replace();
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Mobile Menu Toggle
+        const firebaseConfig = {
+          apiKey: "AIzaSyDR2PfEpeKGQsn7E-3dP93lery6O5nXUFc",
+          authDomain: "the-wolfpark-collective.firebaseapp.com",
+          projectId: "the-wolfpark-collective",
+          storageBucket: "the-wolfpark-collective.appspot.com",
+          messagingSenderId: "1096289870145",
+          appId: "1:1096289870145:web:7c8a49f310e258339581c0",
+          measurementId: "G-03G76M7P6H"
+        };
+        const appId = 'the-wolfpark-collective';
+        
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        async function init() {
+            try {
+                await signInAnonymously(auth);
+                loadContent();
+            } catch(error) {
+                console.error("Firebase auth failed:", error);
+            }
+        }
+        init();
+
+        feather.replace();
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+
+        function loadContent() {
+            const missionContainer = document.getElementById('mission-content');
+            const docRef = doc(db, `/artifacts/${appId}/public/data/site_content/about`);
+            onSnapshot(docRef, (docSnap) => {
+                if (docSnap.exists() && docSnap.data().mission) {
+                    const paragraphs = docSnap.data().mission.split('\n').map(p => `<p>${p}</p>`).join('');
+                    missionContainer.innerHTML = paragraphs;
+                } else {
+                    missionContainer.innerHTML = "<p>Our mission is to provide the resources, network, and environment necessary for our members to push boundaries, realize their visions, and create impactful work. We believe that by working together, we can achieve more than we ever could alone.</p>";
+                }
+            }, (error) => {
+                console.error("Error loading mission content:", error);
+                missionContainer.innerHTML = "<p>Could not load mission statement.</p>";
+            });
+        }
     </script>
 </body>
 </html>
