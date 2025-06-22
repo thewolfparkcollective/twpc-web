@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Departments | The Wolfpark Collective</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons for minimalist icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        /* Reusing the same styles from other pages for consistency */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0a192f; /* Navy Blue Background */
+            color: #e5e7eb; 
+        }
+
+        .bg-navy { background-color: #0a192f; }
+        .bg-lavender { background-color: #a78bfa; }
+        .hover\:bg-lavender-dark:hover { background-color: #8b5cf6; }
+        .text-lavender { color: #a78bfa; }
+        .border-lavender { border-color: #a78bfa; }
+        
+        .nav-link {
+            position: relative;
+            padding-bottom: 8px;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #a78bfa;
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        .nav-link:hover, .nav-link.active {
+             color: #ffffff;
+        }
+        
+        /* Style for department sections for clear separation */
+        .department-section:not(:last-child) {
+            border-bottom: 1px solid #1e293b; /* A soft border between sections */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header id="header" class="sticky top-0 left-0 right-0 z-50 bg-navy/90 backdrop-blur-sm shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <nav class="flex items-center justify-between">
+                <!-- LOGO -->
+                <a href="index.html" class="flex items-center space-x-3 z-10">
+                    <img src="https://i.imgur.com/u1MLUaK.png" alt="Wolfpark Wave Logo" class="h-8 w-auto">
+                    <span class="text-xl font-bold tracking-wider text-white hidden sm:block">The Wolfpark Collective</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link text-gray-300 font-medium">Home</a>
+                    <a href="about.html" class="nav-link text-gray-300 font-medium">About</a>
+                    <a href="departments.html" class="nav-link text-gray-300 font-medium active">Departments</a>
+                    <a href="projects.html" class="nav-link text-gray-300 font-medium">Projects</a>
+                    <a href="community.html" class="nav-link text-gray-300 font-medium">Community</a>
+                    <a href="contact.html" class="nav-link text-gray-300 font-medium">Contact</a>
+                </div>
+
+                 <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-300 hover:text-white focus:outline-none z-10">
+                    <span class="sr-only">Open main menu</span>
+                    <i data-feather="menu" class="w-6 h-6"></i>
+                </button>
+            </nav>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 w-full bg-navy/95 backdrop-blur-sm">
+            <div class="flex flex-col items-center justify-center py-8 space-y-6">
+                <a href="index.html" class="text-xl font-medium text-gray-200 hover:text-lavender">Home</a>
+                <a href="about.html" class="text-xl font-medium text-gray-200 hover:text-lavender">About</a>
+                <a href="departments.html" class="text-xl font-medium text-lavender">Departments</a>
+                <a href="projects.html" class="text-xl font-medium text-gray-200 hover:text-lavender">Projects</a>
+                <a href="community.html" class="text-xl font-medium text-gray-200 hover:text-lavender">Community</a>
+                <a href="contact.html" class="text-xl font-medium text-gray-200 hover:text-lavender">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Header Section -->
+        <section class="bg-navy pt-24 pb-16 md:pt-32 md:pb-24 text-center">
+            <div class="container mx-auto px-6">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-white">Our Departments</h1>
+                <p class="text-lg md:text-xl text-lavender mt-4">Where creativity finds its focus.</p>
+            </div>
+        </section>
+
+        <!-- Departments Intro -->
+        <section class="py-20 px-6">
+            <div class="container mx-auto max-w-4xl text-center">
+                 <p class="text-lg text-gray-300">The Wolfpark Collective is organized into several key departments, each serving as a hub for a specific creative discipline. These departments foster collaboration among members with shared interests and provide specialized resources to help bring their projects to life.</p>
+            </div>
+        </section>
+
+        <!-- Department Detail Sections -->
+        <div class="container mx-auto px-6">
+            <!-- Recordings Department -->
+            <section id="recordings" class="department-section py-16 md:py-20 grid md:grid-cols-2 gap-12 items-center">
+                <div class="md:pr-12">
+                     <h2 class="text-3xl font-bold text-white mb-4 flex items-center"><i data-feather="music" class="w-8 h-8 mr-4 text-lavender"></i>Recordings</h2>
+                     <p class="text-lg text-gray-300">Our Recordings department is the home for musicians, audio engineers, and sound designers. From professional-grade recording sessions to collaborative songwriting camps, we provide the tools and talent to produce exceptional audio work.</p>
+                </div>
+                <div><img src="https://placehold.co/600x400/0a192f/a78bfa?text=Recording+Studio" alt="Recording Studio" class="rounded-xl shadow-lg w-full h-auto object-cover"></div>
+            </section>
+
+            <!-- Visuals Department -->
+            <section id="visuals" class="department-section py-16 md:py-20 grid md:grid-cols-2 gap-12 items-center">
+                <div class="md:order-2 md:pl-12">
+                     <h2 class="text-3xl font-bold text-white mb-4 flex items-center"><i data-feather="camera" class="w-8 h-8 mr-4 text-lavender"></i>Visuals</h2>
+                     <p class="text-lg text-gray-300">For filmmakers, photographers, and graphic designers, the Visuals department offers a space to create stunning visual content. We facilitate everything from photo shoots and film sets to branding projects and digital illustration.</p>
+                </div>
+                <div class="md:order-1"><img src="https://placehold.co/600x400/0a192f/a78bfa?text=Visual+Art" alt="Visuals" class="rounded-xl shadow-lg w-full h-auto object-cover"></div>
+            </section>
+
+            <!-- Studio Arts Department -->
+            <section id="studio-arts" class="department-section py-16 md:py-20 grid md:grid-cols-2 gap-12 items-center">
+                 <div class="md:pr-12">
+                     <h2 class="text-3xl font-bold text-white mb-4 flex items-center"><i data-feather="edit-3" class="w-8 h-8 mr-4 text-lavender"></i>Studio Arts</h2>
+                     <p class="text-lg text-gray-300">The Studio Arts department is dedicated to painters, sculptors, and other fine artists. We provide shared studio space, workshops, and gallery opportunities for members to hone their craft and exhibit their work.</p>
+                </div>
+                <div><img src="https://placehold.co/600x400/0a192f/a78bfa?text=Art+Studio" alt="Studio Arts" class="rounded-xl shadow-lg w-full h-auto object-cover"></div>
+            </section>
+        </div>
+        
+        <!-- Call to Action -->
+        <section class="py-20 md:py-28 text-center px-6">
+             <div class="container mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Inspired to create?</h2>
+                <a href="contact.html" class="bg-lavender hover:bg-lavender-dark text-white font-bold py-3 px-8 rounded-lg text-lg transition-all transform hover:scale-105">Get in Touch</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-navy border-t border-gray-800">
+        <div class="container mx-auto px-6 py-8">
+            <div class="text-center mb-6"><a href="index.html" class="px-3 text-gray-400 hover:text-white">Home</a><a href="about.html" class="px-3 text-gray-400 hover:text-white">About</a><a href="departments.html" class="px-3 text-gray-400 hover:text-white">Departments</a><a href="projects.html" class="px-3 text-gray-400 hover:text-white">Projects</a><a href="community.html" class="px-3 text-gray-400 hover:text-white">Community</a><a href="contact.html" class="px-3 text-gray-400 hover:text-white">Contact</a></div>
+            <div class="flex justify-center space-x-6 mb-6"><a href="#" class="text-gray-400 hover:text-lavender"><i data-feather="twitter"></i></a><a href="#" class="text-gray-400 hover:text-lavender"><i data-feather="instagram"></i></a><a href="#" class="text-gray-400 hover:text-lavender"><i data-feather="linkedin"></i></a></div>
+            <p class="text-center text-gray-500">&copy; 2025 The Wolfpark Collective. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Feather Icons Initialization
+        feather.replace();
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
