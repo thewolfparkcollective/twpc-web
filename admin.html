@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | The Wolfpark Collective</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons for minimalist icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0a192f;
+            color: #e5e7eb;
+        }
+        .bg-navy { background-color: #0a192f; }
+        .bg-lavender { background-color: #a78bfa; }
+        .hover\:bg-lavender-dark:hover { background-color: #8b5cf6; }
+        .text-lavender { color: #a78bfa; }
+        .border-lavender { border-color: #a78bfa; }
+        
+        .form-input {
+            background-color: #1e293b;
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #a78bfa;
+        }
+        /* Make date/time input text readable on dark backgrounds */
+        input[type="date"], input[type="time"] {
+            color-scheme: dark;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Admin Page Container -->
+    <div id="admin-container" class="min-h-screen flex flex-col">
+
+        <!-- Header -->
+        <header class="bg-navy/90 backdrop-blur-sm shadow-lg">
+            <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+                 <a href="index.html" class="flex items-center space-x-3">
+                    <img src="https://i.imgur.com/u1MLUaK.png" alt="Wolfpark Wave Logo" class="h-8 w-auto">
+                    <span class="text-xl font-bold tracking-wider text-white">Admin Panel</span>
+                </a>
+                <button id="logout-button" class="hidden bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg">Logout</button>
+            </div>
+        </header>
+        
+        <!-- Login View -->
+        <div id="login-view" class="flex-grow flex items-center justify-center">
+            <div class="w-full max-w-md p-8 space-y-8 bg-navy rounded-xl shadow-2xl border border-gray-800">
+                <h2 class="text-3xl font-bold text-center text-white">Admin Login</h2>
+                <form id="login-form" class="space-y-6">
+                    <div>
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-300">Email</label>
+                        <input type="email" id="email" name="email" class="w-full p-3 rounded-lg form-input" required>
+                    </div>
+                    <div>
+                        <label for="password" class="block mb-2 text-sm font-medium text-gray-300">Password</label>
+                        <input type="password" id="password" name="password" class="w-full p-3 rounded-lg form-input" required>
+                    </div>
+                    <button type="submit" class="w-full bg-lavender hover:bg-lavender-dark text-white font-bold py-3 px-6 rounded-lg text-lg transition-all">Login</button>
+                    <p id="login-error" class="text-red-500 text-center"></p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Dashboard View (hidden by default) -->
+        <main id="dashboard-view" class="hidden flex-grow container mx-auto px-6 py-8">
+            <div id="main-dashboard">
+                <h1 class="text-4xl font-bold text-white mb-8">Dashboard</h1>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-navy p-6 rounded-xl border border-gray-800 shadow-lg"><h2 class="text-2xl font-bold text-white mb-4">Manage Projects</h2><p class="text-gray-400 mb-4">Add, edit, or delete projects from the main gallery.</p><button id="go-to-projects" class="bg-lavender/20 hover:bg-lavender/30 text-white font-semibold py-2 px-4 rounded-lg w-full">Go to Projects</button></div>
+                    <div class="bg-navy p-6 rounded-xl border border-gray-800 shadow-lg"><h2 class="text-2xl font-bold text-white mb-4">Manage Events</h2><p class="text-gray-400 mb-4">Update the community events calendar.</p><button id="go-to-events" class="bg-lavender/20 hover:bg-lavender/30 text-white font-semibold py-2 px-4 rounded-lg w-full">Go to Events</button></div>
+                    <div class="bg-navy p-6 rounded-xl border border-gray-800 shadow-lg"><h2 class="text-2xl font-bold text-white mb-4">Manage Site Content</h2><p class="text-gray-400 mb-4">Edit text on the About and Departments pages.</p><button id="go-to-content" class="bg-lavender/20 hover:bg-lavender/30 text-white font-semibold py-2 px-4 rounded-lg w-full">Go to Content</button></div>
+                </div>
+            </div>
+
+            <!-- Projects Management Section (hidden) -->
+            <div id="projects-management-section" class="hidden">
+                <div class="flex justify-between items-center mb-8"><h1 class="text-4xl font-bold text-white">Manage Projects</h1><button class="back-to-dashboard-btn bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg">Back</button></div>
+                <div class="bg-navy p-8 rounded-xl border border-gray-800 mb-12"><h2 class="text-2xl font-bold text-white mb-4">Add New Project</h2><form id="add-project-form" class="grid md:grid-cols-3 gap-6 items-end"><div><label for="project-title" class="block mb-2 text-sm font-medium">Project Title</label><input type="text" id="project-title" class="w-full p-2 rounded-lg form-input" required></div><div><label for="project-department" class="block mb-2 text-sm font-medium">Department</label><input type="text" id="project-department" class="w-full p-2 rounded-lg form-input" required></div><button type="submit" class="w-full bg-lavender hover:bg-lavender-dark text-white font-bold py-2 px-4 rounded-lg">Add Project</button></form></div>
+                <div><h2 class="text-2xl font-bold text-white mb-4">Current Projects</h2><div id="projects-list" class="space-y-4"><p id="projects-loading">Loading...</p></div></div>
+            </div>
+
+            <!-- Events Management Section (hidden) -->
+            <div id="events-management-section" class="hidden">
+                 <div class="flex justify-between items-center mb-8"><h1 class="text-4xl font-bold text-white">Manage Events</h1><button class="back-to-dashboard-btn bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg">Back</button></div>
+                 <div class="bg-navy p-8 rounded-xl border border-gray-800 mb-12"><h2 class="text-2xl font-bold text-white mb-4">Add New Event</h2><form id="add-event-form" class="space-y-4"><div class="grid md:grid-cols-2 gap-6"><div><label for="event-title" class="block mb-2 text-sm font-medium">Event Title</label><input type="text" id="event-title" class="w-full p-2 rounded-lg form-input" required></div><div><label for="event-date" class="block mb-2 text-sm font-medium">Date</label><input type="date" id="event-date" class="w-full p-2 rounded-lg form-input" required></div><div><label for="event-time" class="block mb-2 text-sm font-medium">Time</label><input type="time" id="event-time" class="w-full p-2 rounded-lg form-input" required></div><div><label for="event-location" class="block mb-2 text-sm font-medium">Location</label><input type="text" id="event-location" class="w-full p-2 rounded-lg form-input" required></div></div><div><label for="event-description" class="block mb-2 text-sm font-medium">Description</label><textarea id="event-description" rows="3" class="w-full p-2 rounded-lg form-input" required></textarea></div><button type="submit" class="w-full bg-lavender hover:bg-lavender-dark text-white font-bold py-2 px-4 rounded-lg">Add Event</button></form></div>
+                <div><h2 class="text-2xl font-bold text-white mb-4">Current Events</h2><div id="events-list" class="space-y-4"><p id="events-loading">Loading...</p></div></div>
+            </div>
+
+            <!-- Site Content Management Section (hidden) -->
+            <div id="content-management-section" class="hidden">
+                 <div class="flex justify-between items-center mb-8"><h1 class="text-4xl font-bold text-white">Manage Site Content</h1><button class="back-to-dashboard-btn bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg">Back</button></div>
+                 <div class="bg-navy p-8 rounded-xl border border-gray-800">
+                    <h2 class="text-2xl font-bold text-white mb-4">About Us Page</h2>
+                    <form id="about-content-form" class="space-y-4">
+                        <div>
+                            <label for="about-mission" class="block mb-2 text-sm font-medium">"Our Mission" Section</label>
+                            <textarea id="about-mission" rows="6" class="w-full p-2 rounded-lg form-input" required placeholder="Loading content..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-lavender hover:bg-lavender-dark text-white font-bold py-2 px-4 rounded-lg">Save Mission Statement</button>
+                        <p id="content-save-status" class="text-center pt-2"></p>
+                    </form>
+                 </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, onSnapshot, addDoc, deleteDoc, doc, Timestamp, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyDR2PfEpeKGQsn7E-3dP93lery6O5nXUFc",
+          authDomain: "the-wolfpark-collective.firebaseapp.com",
+          projectId: "the-wolfpark-collective",
+          storageBucket: "the-wolfpark-collective.appspot.com",
+          messagingSenderId: "1096289870145",
+          appId: "1:1096289870145:web:7c8a49f310e258339581c0",
+          measurementId: "G-03G76M7P6H"
+        };
+        const appId = 'the-wolfpark-collective';
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        
+        const loginView = document.getElementById('login-view');
+        const dashboardView = document.getElementById('dashboard-view');
+        const mainDashboard = document.getElementById('main-dashboard');
+        const logoutButton = document.getElementById('logout-button');
+        const loginForm = document.getElementById('login-form');
+        const loginError = document.getElementById('login-error');
+        
+        const projectsManagementSection = document.getElementById('projects-management-section');
+        const eventsManagementSection = document.getElementById('events-management-section');
+        const contentManagementSection = document.getElementById('content-management-section');
+        
+        const goToProjectsButton = document.getElementById('go-to-projects');
+        const goToEventsButton = document.getElementById('go-to-events');
+        const goToContentButton = document.getElementById('go-to-content');
+
+        function showSection(section) {
+            mainDashboard.classList.add('hidden');
+            projectsManagementSection.classList.add('hidden');
+            eventsManagementSection.classList.add('hidden');
+            contentManagementSection.classList.add('hidden');
+            section.classList.remove('hidden');
+        }
+
+        goToProjectsButton.addEventListener('click', () => showSection(projectsManagementSection));
+        goToEventsButton.addEventListener('click', () => showSection(eventsManagementSection));
+        goToContentButton.addEventListener('click', () => showSection(contentManagementSection));
+
+        document.querySelectorAll('.back-to-dashboard-btn').forEach(button => {
+            button.addEventListener('click', () => showSection(mainDashboard));
+        });
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                loginView.classList.add('hidden');
+                dashboardView.classList.remove('hidden');
+                logoutButton.classList.remove('hidden');
+                listenForAdminProjects();
+                listenForAdminEvents();
+                loadAboutContent();
+            } else {
+                loginView.classList.remove('hidden');
+                dashboardView.classList.add('hidden');
+                logoutButton.classList.add('hidden');
+            }
+        });
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            loginError.textContent = '';
+            try { await signInWithEmailAndPassword(auth, email, password); } 
+            catch (error) { loginError.textContent = "Invalid email or password."; }
+        });
+        logoutButton.addEventListener('click', () => signOut(auth));
+        
+        const addProjectForm = document.getElementById('add-project-form');
+        const projectsListContainer = document.getElementById('projects-list');
+        function listenForAdminProjects() {
+            const projectsCollection = collection(db, `/artifacts/${appId}/public/data/projects`);
+            onSnapshot(projectsCollection, (snapshot) => {
+                projectsListContainer.innerHTML = '';
+                if(snapshot.empty) { projectsListContainer.innerHTML = '<p class="text-gray-500">No projects found.</p>'; return; }
+                snapshot.forEach(doc => {
+                    const project = doc.data();
+                    const el = document.createElement('div');
+                    el.className = 'flex justify-between items-center bg-gray-800 p-4 rounded-lg';
+                    el.innerHTML = `<div><p class="font-bold text-white">${project.title}</p><p class="text-sm text-gray-400">${project.department}</p></div><button data-id="${doc.id}" class="delete-project-btn bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-3 rounded-lg">Delete</button>`;
+                    projectsListContainer.appendChild(el);
+                });
+            });
+        }
+        addProjectForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            try {
+                await addDoc(collection(db, `/artifacts/${appId}/public/data/projects`), {
+                    title: document.getElementById('project-title').value,
+                    department: document.getElementById('project-department').value
+                });
+                addProjectForm.reset();
+            } catch (error) { console.error("Error adding project: ", error); }
+        });
+        projectsListContainer.addEventListener('click', async (e) => {
+            if (e.target.classList.contains('delete-project-btn')) {
+                const id = e.target.dataset.id;
+                if (confirm('Delete project?')) {
+                    try { await deleteDoc(doc(db, `/artifacts/${appId}/public/data/projects`, id)); } 
+                    catch (error) { console.error("Error deleting project:", error); }
+                }
+            }
+        });
+
+        const addEventForm = document.getElementById('add-event-form');
+        const eventsListContainer = document.getElementById('events-list');
+        function listenForAdminEvents() {
+            const eventsCollection = collection(db, `/artifacts/${appId}/public/data/events`);
+            onSnapshot(eventsCollection, (snapshot) => {
+                eventsListContainer.innerHTML = '';
+                if(snapshot.empty) { eventsListContainer.innerHTML = '<p class="text-gray-500">No events found.</p>'; return; }
+                snapshot.forEach(doc => {
+                    const event = doc.data();
+                    const eventDate = event.date.toDate().toLocaleDateString();
+                    const el = document.createElement('div');
+                    el.className = 'flex justify-between items-center bg-gray-800 p-4 rounded-lg';
+                    el.innerHTML = `<div><p class="font-bold text-white">${event.title}</p><p class="text-sm text-gray-400">${eventDate} at ${event.time} - ${event.location}</p></div><button data-id="${doc.id}" class="delete-event-btn bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-3 rounded-lg">Delete</button>`;
+                    eventsListContainer.appendChild(el);
+                });
+            });
+        }
+        addEventForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const date = new Date(document.getElementById('event-date').value + 'T' + (document.getElementById('event-time').value || '00:00'));
+            try {
+                await addDoc(collection(db, `/artifacts/${appId}/public/data/events`), {
+                    title: document.getElementById('event-title').value,
+                    date: Timestamp.fromDate(date),
+                    time: document.getElementById('event-time').value,
+                    location: document.getElementById('event-location').value,
+                    description: document.getElementById('event-description').value,
+                });
+                addEventForm.reset();
+            } catch (error) { console.error("Error adding event: ", error); }
+        });
+        eventsListContainer.addEventListener('click', async (e) => {
+            if (e.target.classList.contains('delete-event-btn')) {
+                const id = e.target.dataset.id;
+                if (confirm('Delete event?')) {
+                    try { await deleteDoc(doc(db, `/artifacts/${appId}/public/data/events`, id)); } 
+                    catch (error) { console.error("Error deleting event: ", error); }
+                }
+            }
+        });
+
+        const aboutContentForm = document.getElementById('about-content-form');
+        const aboutMissionTextarea = document.getElementById('about-mission');
+        const contentSaveStatus = document.getElementById('content-save-status');
+        
+        function loadAboutContent() {
+            const docRef = doc(db, `/artifacts/${appId}/public/data/site_content/about`);
+            onSnapshot(docRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    aboutMissionTextarea.value = docSnap.data().mission || '';
+                } else {
+                    aboutMissionTextarea.value = '';
+                }
+            }, (error) => {
+                aboutMissionTextarea.placeholder = "Error loading content.";
+            });
+        }
+
+        aboutContentForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const missionText = aboutMissionTextarea.value;
+            const docRef = doc(db, `/artifacts/${appId}/public/data/site_content/about`);
+            try {
+                await setDoc(docRef, { mission: missionText }, { merge: true });
+                contentSaveStatus.textContent = "Successfully saved!";
+                contentSaveStatus.style.color = '#a78bfa';
+            } catch (error) {
+                contentSaveStatus.textContent = "Error saving content.";
+                contentSaveStatus.style.color = '#ef4444';
+            }
+            setTimeout(() => { contentSaveStatus.textContent = ''; }, 3000);
+        });
+
+        feather.replace();
+    </script>
+</body>
+</html>
